@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const PokemonForm = (name) => {
+const PokemonForm = ({search}) => {
     const INITIAL_STATE = ''
     const [formData, setFormData] = useState(INITIAL_STATE)
 
@@ -9,9 +9,15 @@ const PokemonForm = (name) => {
         setFormData(value)
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        search(formData)
+        setFormData(INITIAL_STATE)
+    }
+    
     return (
         <>
-        <form>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="pokemon-name">Search a Pokemon</label>
             <div>
             <input
